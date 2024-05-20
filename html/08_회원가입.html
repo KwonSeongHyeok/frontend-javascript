@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>회원가입</title>
+    <style>
+      .컨테이너 {
+        border: 4px solid gray;
+        border-radius: 10px;
+        width: 30%;
+        padding: 5%;
+      }
+
+      button {
+        color: blue;
+        font-weight: bolder;
+        background-color: white;
+        border: 4px solid blue;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="컨테이너">
+      <div class="회원정보">
+        이름 : <input type="text" id="user_name" /><br /><br /><br />
+        이메일 : <input type="email" id="user_email" /><br /><br /><br />
+        비밀번호 : <input type="password" id="user_pw" /><br /><br /><br />
+        비밀번호 확인 : <input type="password" id="user_pw_confirm" /><br />
+      </div>
+      <br /><br />
+      <div>
+        <button onclick="이름이메일확인()">이름 이메일 값확인</button>
+        <button onclick="비밀번호일치여부()">비밀번호 값확인</button>
+        <button onclick="회원가입()">회원가입</button>
+      </div>
+    </div>
+    <br /><br />
+
+    <script>
+      const 이름값 = document.getElementById("user_name");
+      const 이메일값 = document.getElementById("user_email");
+      const 비밀번호값 = document.getElementById("user_pw");
+      const 비밀번호확인값 = document.getElementById("user_pw_confirm");
+
+      function 이름이메일확인() {
+        const 이름 = 이름값.value;
+        const 이메일 = 이메일값.value;
+
+        if (이름 == "동그라미" && 이메일 == "one@kh.kh") {
+          alert("이미 가입한 회원입니다. 로그인해주세요.");
+        } else {
+          alert("가입하지 않은 회원입니다.");
+        }
+      }
+
+      function 비밀번호일치여부() {
+        const pw1 = 비밀번호값.value;
+        const pw2 = 비밀번호확인값.value;
+
+        if (pw1 == pw2) {
+          alert("패스워드가 일치합니다.");
+        } else {
+          alert("비밀번호가 일치하지 않습니다.");
+        }
+      }
+
+      function 회원가입() {
+        alert("회원가입이 완료되었습니다.");
+      }
+    </script>
+  </body>
+</html>

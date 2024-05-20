@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>조건문</title>
+  </head>
+  <body>
+    <h1>조건문</h1>
+    <pre>
+            프로그래밍 코드가 해석되는 순서를 제어하는 제어문의 한 종류로
+            작성된 조건식에 따라 수행되는 코드를 변경하는 구문
+        </pre
+    >
+    <hr />
+
+    <h3>if(만약에) 문</h3>
+    <pre>
+            <code>
+                if(조건식){
+                    조건식이 true일 경우 실행할 코드;
+                }
+            </code>
+            * 조건식 : 결과가 true, false인 식
+        </pre>
+    <input type="number" id="인풋1" />
+    <button onclick="체크1()">양수인지 검사하기</button>
+
+    <script>
+      /* if문을 사용해서 양수인지 검사하기 */
+      const 인풋1 = document.getElementById("인풋1");
+      function 체크1() {
+        const 양수확인값 = 인풋1.value;
+
+        if (양수확인값 > 0) {
+          alert("양수입니다.!!!!");
+        }
+
+        if (양수확인값 <= 0) {
+          alert("양수가 아닙니다.!!!!");
+        }
+      }
+    </script>
+
+    <hr />
+    <h3>if - else 문</h3>
+    <pre>
+            <code>
+                if(조건식) {
+                    조건식이 true인 경우 수행할 코드;
+                } else {
+                    조건식이 false인 경우 수행할 코드;
+                }
+            </code>
+
+            * else는 조건식을 작성하는 () 없음
+        </pre>
+
+    <h5>0 ~ 100 사이에 랜덤숫자를 발생시켜서 홀/짝 판별</h5>
+    <button onclick="체크2()">확인하기</button>
+    <script>
+      /*
+            랜덤 숫자 -> 난수 : 정의된 범위 내에서 무작위로 추출된 수
+            난수 : 어지러울 난
+
+            자바 Random()  Math.random() 사용하는 것처럼
+            자바스크립트에서 Math.random() 사용할 수 있음
+
+            Math.floor() : 내림     주어진 정수와 같거나 작은 정수 중에서 가장 큰 수 반환
+            Math.ceil() : 올림      주어진 정수와 같거나 큰 정수 중에서 가장 작은 수 반환
+            Math.round() : 반올림   입력한 값을 정수와 가장 가까운 정수를 반환
+
+            random으로 나온 실수를 정수로 반환하고 싶다면 위 세가지 중에서 넣고 싶은 값 괄호() dksdp
+            Math.random()을 넣어주면됨
+
+            */
+      function 체크2() {
+        const 랜덤숫자 = Math.floor(Math.random() * 101); // 0~100 까지 101가지 숫자 랜덤으로 추출
+
+        // 만약에 홀수일 경우 숫자 % 2 != 0
+
+        if (랜덤숫자 % 2 != 0) {
+          alert(랜덤숫자 + "은/는 홀수입니다.");
+        }
+      }
+    </script>
+
+    <h3>if(만약에) - else if(아니라면 이렇게 해보자) - else (모두 아니라면)</h3>
+    <pre>
+            <code>
+                if(조건식1){
+                    조건식1이 true 인 경우 발생;
+                } else if(조건식2) {
+                    조건식1 이 false 이지만
+                    조건식2 가 true 인 경우 실행
+                } else {
+                    조건식1, 조건식2 모두 false 일 경우 실행;
+                }
+            </code>
+        </pre>
+
+    <h5>어린이, 청소년, 성인 구분하기</h5>
+    <pre>
+            나이를 입력 받아
+            0 ~ 13 : 어린이
+            14세 ~ 19세 : 청소년
+            20세 ~ 120세 : 성인
+        </pre
+    >
+    나이 : <input type="number" id="나잇값" />
+    <button onclick="체크4()">확인하기</button>
+
+    <script>
+      function 체크4() {
+        const 입력받은나이 = document.getElementById("나잇값");
+        const 나이 = 입력받은나이.value;
+        // const 입력받은나이 = document.getElementById("나잇값").value; 위와 동일한 코드
+
+        let 메세지;
+
+        if (나이 >= 0 && 나이 <= 13) {
+        메세지 = "어린이";
+        } else if (나이 <= 19) {
+        메세지 = "청소년";
+        } else if (나이 <= 120) {
+        메세지 = "성인";
+        }
+        console.log("키보드로 입력받은 나이는 !!! " + 나이);
+          alert(메세지);
+      }
+    </script>
+  </body>
+</html>
