@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" /> 
+        <title></title>
+        <style>
+            .숨김보임{
+                display: none;
+            }
+            #약관{
+                border: 2px solid black;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="컨테이너">
+            <label>이름 : </label>
+            <input type="text" id="user_name" required><br><br>
+            <label>이메일 : </label>
+            <input type="email" id="user_email" required><br><br>
+            <label>비밀번호 : </label>
+            <input type="password" id="user_pw" required><br><br>
+            <label>비밀번호확인 : </label>
+            <input type="password" id="user_pw_confirm" required><br><br>
+        </div>
+        <button onclick="이름메일중복확인()">이름,이메일 중복확인</button>
+        <button onclick="회원가입()">회원가입</button>
+
+        <hr>
+        <div id="약관" class="숨김보임">
+            <h4>이용약관</h4>
+            <p>이 부분은 이용약관입니다.</p>
+        </div>
+        <button onclick="숨기기보이기()">이용약관</button>
+    </body>
+    <script>
+        const 이름 = document.getElementById("user_name");
+        const 이메일 = document.getElementById("user_email");
+        const 비밀번호 = document.getElementById("user_pw");
+        const 비밀번호확인 = document.getElementById("user_pw_confirm");
+
+        function 이름메일중복확인() {
+            const 이름1 = 이름.value;
+            const 이메일1 = 이메일.value;
+
+            if(이름1 == "고영희" || 이메일1 == "ko@kh.kh"){
+                alert("이름 또는 이메일이 이미 존재합니다.");
+            } else{
+                alert("회원가입이 가능합니다.");
+            }
+        }
+
+        function 회원가입() {
+            const 비밀번호1 = 비밀번호.value;
+            const 비밀번호확인1 = 비밀번호확인.value;
+
+            if(비밀번호1 != 비밀번호확인1) {
+                alert("비밀번호가 다릅니다. 확인해주세요");
+            } else{
+                alert("회원가입이 완료되었습니다.");
+            }
+        }
+
+        function 숨기기보이기() {
+            const 박스 = document.getElementById("약관");
+
+            if(박스.classList.contains("숨김보임")) {
+                박스.classList.remove("숨김보임");
+            } else {
+                박스.classList.add("숨김보임");
+            }
+        }
+
+    </script>
+
+</html>
