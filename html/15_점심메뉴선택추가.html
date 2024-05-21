@@ -15,6 +15,24 @@
                 <!-- 나중에 메뉴 추가하시를 했을 때 추가될 것 -->
             </ul>
         </div>
+        <style>
+            button{
+                padding: 10px 20px;
+                background-color: green;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            /* 버튼위에 마우스 올렸을 때 색상 변경 */
+            button:hover {
+                background-color: yellow;
+                color: black;
+            }
+            ul{
+                list-style-type: none;
+            }
+        </style>
         <button onclick="메뉴선택()">메뉴 선택하기</button>
         <button onclick="메뉴추가()">메뉴 추가하기</button>
         <script>
@@ -45,7 +63,7 @@
             Id값 제거하고 태그만 작성하기            ul.appendChild(li);
                                             메뉴리스트 = ul 태그 값
                                               newItem = 새로 추가되는 li 태그 값
-                                              
+
             */
 
             // 메뉴선택 기능만들기
