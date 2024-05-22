@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" /> 
+        <title>비밀번호 유효성 검사</title>
+        <style>
+            .check{
+                color: green;
+            }
+            .error{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>회원가입</h2>
+        <form action="#" name="signupForm">
+            <h3>비밀번호 : </h3>
+            <input type="text" class="signup-input" id="inputPW" name="user_pw">
+            <br>
+            <span class="input-result">영어, 숫자 8~20 글자 사이</span>
+        </form>
+
+        <script>
+            /* 유효성 여부를 체크해두는 객체 생성 */
+            const checkList = {
+                "inputPW" : false
+            };
+            const inputPW = document.querySelector("#inputPW")
+
+            inputPW.addEventListener("input", e => {
+                //          e.(input).target = 이벤트가 발생한 태그(버튼, 입력 필드 등)를 가리킴
+                //                     value = 이벤트가 발생한 태그의 값을 가져오기.
+                const value = e.target.value;
+                //      sibling(형제 자매) = brother sister
+                //            <input>       <br>                <span>
+                const span = e.target.nextElementSibling.nextElementSibling;
+
+                // 만약에 입력이 아무것도 안되어있으면 입력 x
+                if(value.trim().length == 0) {
+                    span.textContent = "영어, 숫자 8~20 글자 사이";
+                    span.classList.remove("check","error");
+                    e.target.value = "";
+                    checkList["inputPW"] = false;
+                    return;
+                }
+
+                
+                const 비밀번호정규식 = /^[A-Za-z0-9]{8,20}$/;
+
+                if(비밀번호정규식.test(value)){
+                    span.textContent = "유효한 비밀번호입니다.";
+                    span.classList.add("check");
+                    span.classList.remove("error");
+                    checkList["inputPW"] = true;
+                } else {
+                    span.textContent = "유효하지 않은 비밀번호입니다.";
+                    span.classList.add("error");
+                    span.classList.remove("check");
+                    checkList["inputPW"] = false;
+                }
+            })
+        </script>
+
+    </body>
+</html>

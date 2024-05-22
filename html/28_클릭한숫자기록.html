@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" /> 
+        <title>클릭한 숫자 기록</title>
+        <style>
+            *{
+                box-sizing:  border-box;
+                margin: 0;
+                padding: 0;
+            }
+            .container{
+                width: 150px;
+                margin: 30px;
+                display: flex;
+
+                /*
+                flex-wrap : 아이템들이 여러줄에 걸쳐 나타나는 것을 결정
+                wrap : 아이템들이 여러줄에 걸쳐서 나타남
+                nowrap : 아이템들이 여러줄에 걸쳐 나타나지 않고 한 줄에 뭉쳐서 표시
+                */
+                flex-wrap: wrap;
+            }
+
+            .number{
+                width: 50px;
+                height: 50px;
+                border: 1px solid rgb(217, 210, 210);
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                user-select: none;
+                margin-bottom: 5px;
+                margin-right: 5px;
+            }
+
+            .number:hover{
+                background-color: skyblue;
+            }
+
+            .number:active{ /* 클릭시 색상 변환 */
+                background-color: orange;
+            }
+
+            #resultBtn{
+                border: none;
+                padding: 10px 20px;
+                border-radius: 10px;
+                margin-top: 10px;
+                color: white;
+                background-color: rgb(135, 135, 217);
+            }
+            #resultBtn:hover{
+                background-color: deepskyblue;
+            }
+            #result{
+                font-size: 24px;
+                font-weight: bold;
+                color: navy;
+                display: block;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>클릭한 숫자들 기록하기</h1>
+        <div class="container">
+            <div class="number">1</div>
+            <div class="number">2</div>
+            <div class="number">3</div>
+            <div class="number">4</div>
+            <div class="number">5</div>
+            <div class="number">6</div>
+            <div class="number">7</div>
+            <div class="number">8</div>
+            <div class="number">9</div>
+            <!-- 숫자 게임에는 10이 없음-->
+            <div class="number">0</div>
+        </div>
+
+        <div>
+            클릭한 숫자 : <span id="result"></span>
+            <br>
+            <button id="resultBtn">초기화</button>
+        </div>
+
+        <script>
+            const numbers = document.querySelectorAll(".number");
+            const result = document.querySelector("#result");
+
+
+            /*
+            for (   of   ) {}
+                태그를 돔
+            for(let item of 숫자들){}
+            const 숫자들 = [1, 2, 3, 4, 5];
+
+
+            for (   in   ) {}
+                키를 기반으로해서 반복
+            for ( let key  in 사람들  ) {}
+                const 사람들 ={
+                    기호1번 : 김말숙,
+                    기호2번 : 박정애,
+                    기호3번 : 오연석
+                }
+            */
+
+            for(let item of numbers) { // for ... of 배열이나 객체 태그를 순회할 때 사용하는 문법
+                item.addEventListener("click", e => {
+                    // 만약에 숫자를 10개 이상 누르면 10글자 까지만 입력 가능이라는 alert 설정
+                    // === 일치연산자 값과 타입을 모두 비교
+                    // ==  동등연산자 값까지만 비교
+                    if(result.textContent.length === 10) {
+                        alert("10글자까지만 입력 가능")
+                        return;
+                    }
+                    // 이미 선택한 숫자일 경우 다시 선택하지 못하도록 처리
+                    if(e.target.classList.contains("active")){
+                        alert("이미 선택된 숫자입니다");
+                        return;
+                    }
+
+
+                    // 숫자 결과에 클릭한 숫자들 모두 += 옆에다가 담아두기
+                    result.textContent += e.target.textContent;
+
+                    // 선택된 숫자에 active
+                    e.target.classList.add("active");
+
+                    //10일 경우에는 한개 지워주기
+                    if(result.textContent.length === 10) {
+                        for(let item of numbers) {
+                            item.removeEventListener("click", handleClick);
+                        }
+                        console.log("더 이상 숫자를 선택할 수 없습니다.");
+                    }
+
+
+                });
+            }
+
+            /* 초기화 버튼 */
+            document.querySelector("#resultBtn").addEventListener("click", () => {
+                result.textContent = ""; // 기존에 있던 값을 모두 ""으로 지우는 것
+                for(let item of numbers){
+                    item.classList.remove("active");
+                }
+            })
+
+        </script>
+
+
+    </body>
+</html>
