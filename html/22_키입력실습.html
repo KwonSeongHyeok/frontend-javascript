@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" /> 
+        <title>키 입력 실습</title>
+    </head>
+    <body>
+        <h1>키 입력 실습</h1>
+        <div class="container">
+            <div class="key-box">
+                <div class="key">A</div>
+                <div class="key">S</div>
+                <div class="key">D</div>
+                <div class="key">F</div>
+            </div>
+        </div>
+
+
+        <script>
+            const 키들 = document.querySelectorAll(".key");
+            
+            function 키다운기능(e) {
+                let 숫자값저장;
+                switch(e.key){
+                    case 'a' : 숫자값저장 = 0;
+                        break;
+                    case 's' : 숫자값저장 = 1;
+                        break;
+                    case 'd' : 숫자값저장 = 2;
+                        break;
+                    case 'f' : 숫자값저장 = 3;
+                        break;
+                    default  :
+                        return;
+                }
+                키들[숫자값저장].style.background = "lightblue";
+                키들[숫자값저장].style.color = "lightpink";
+            };
+
+            document.addEventListener("keydown", 키다운기능);
+            document.addEventListener("keyup", 키업기능);
+
+
+            function 키업기능(e){
+                let 숫자값저장;
+                switch(e.key){
+                    case 'a' : 숫자값저장 = 0;
+                        break;
+                    case 's' : 숫자값저장 = 1;
+                        break;
+                    case 'd' : 숫자값저장 = 2;
+                        break;
+                    case 'f' : 숫자값저장 = 3;
+                        break;
+                    default  :
+                        return;
+                }
+                키들[숫자값저장].style.background = "lightpink";
+                키들[숫자값저장].style.color = "lightblue";
+            };
+
+            
+
+        </script>
+    </body>
+</html>
