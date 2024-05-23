@@ -47,7 +47,8 @@
 
                     $("li").each(function(){
                         var 텍스트 = $(this).text();
-                        
+                        console.log(" ****************************** ");
+                        console.log(텍스트); // 자바에서 System.out.print 같은 존재
 
                         if(텍스트.indexOf(검색박스) === -1){
                             $(this).hide();

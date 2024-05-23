@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>핸드폰 검색하기</title>
+        <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#검색박스").keyup(function(){
+                const 검색박스 = $(this).val();
+
+                $('li').each(function(){
+                    var 텍스트 = $(this).text();
+
+                    if(텍스트.indexOf(검색박스) === -1 ){
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        .컨테이너{
+            width: 500px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px #ccc;
+        }
+    </style>
+    </head>
+    
+    <body>
+        <h1> 핸드폰 검색</h1>
+        <div class="컨테이너">
+            <input type="text" id="검색박스" placeholder="핸드폰을 검색해주세요">
+            <ul id="핸드폰리스트">
+                <li>Galaxy S21</li>
+                <li>iPhone 12</li>
+                <li>Google pixel 5</li>
+                <li>OnePlus 9</li>
+                <li>Xiaomi Mi 11</li>
+                <li>LG Velvet</li>
+            </ul>
+        </div>
+    </body>
+</html>
