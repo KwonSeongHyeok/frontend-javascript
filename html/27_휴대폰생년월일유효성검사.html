@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>휴대폰번호 유효성 검사</title>
+    <style>
+      .check {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>회원가입</h2>
+    <form action="#" name="signupForm">
+      <h3>휴대폰번호 :</h3>
+      <input
+        type="text"
+        class="signup-input"
+        id="inputPhone"
+        name="user_Phone"
+      />
+      <br />
+      <span class="input-result">핸드폰 번호(000-0000-0000)</span>
+
+      <h3>생년월일 :</h3>
+      <input
+        type="text"
+        class="signup-input"
+        id="inputBirth"
+        name="user_Years"
+      />
+      <br />
+      <span class="input-result">생년월일을 입력하세요.</span>
+    </form>
+
+    <script>
+      /* 유효성 여부를 체크해두는 객체 생성 */
+      const checkList = {
+        inputPhone: false,
+        inputBirth: false,
+      };
+      /* ********** 핸드폰 번호 입력 확인 ********** */
+      const inputPhone = document.querySelector("#inputPhone");
+
+      inputPhone.addEventListener("input", (e) => {
+        //          e.(input).target = 이벤트가 발생한 태그(버튼, 입력 필드 등)를 가리킴
+        //                     value = 이벤트가 발생한 태그의 값을 가져오기.
+        const value = e.target.value;
+        //      sibling(형제 자매) = brother sister
+        //            <input>       <br>                <span>
+        const span = e.target.nextElementSibling.nextElementSibling;
+
+        // 만약에 입력이 아무것도 안되어있으면 입력 x
+        if (value.trim().length == 0) {
+          span.textContent = "핸드폰 번호는 하이픈(-) 포함해서 입력해주세요";
+          span.classList.remove("check", "error");
+          e.target.value = "";
+          checkList["inputPhone"] = false;
+          return;
+        }
+
+        /* 휴대폰 정규식 검사 */
+        // /^ 정규식 시작
+        // /d 숫자 문자 ( 0-9 ) 를 표현
+        // {3} 세자리 숫자      {3, 4} 세자리 또는 네자리 숫자
+        // - 중간에 하이픈 넣어달라는 의미
+        // $/ 정규식 종료
+        // /^\d{11}$/ 숫자를 11자리 입력( 010 0000 0000 ) 하이픈(-) 없이 입력
+        const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/; // 중간에 하이픈(-)을 추가해서 모두 입력
+
+        if (phoneRegex.test(value)) {
+          span.textContent = "유효한 핸드폰 번호 형식입니다.";
+          span.classList.add("check");
+          span.classList.remove("error");
+          checkList["inputPhone"] = true;
+        } else {
+          span.textContent = "유효하지 않은 핸드폰 번호 형식입니다.";
+          span.classList.add("error");
+          span.classList.remove("check");
+          checkList["inputPhone"] = false;
+        }
+      });
+
+      /* ********** 생년월일 입력 확인 ********** */
+      const inputBirth = document.querySelector("#inputBirth");
+
+      inputBirth.addEventListener("input", (e) => {
+        //          e.(input).target = 이벤트가 발생한 태그(버튼, 입력 필드 등)를 가리킴
+        //                     value = 이벤트가 발생한 태그의 값을 가져오기.
+        const value = e.target.value;
+        //      sibling(형제 자매) = brother sister
+        //            <input>       <br>                <span>
+        const span = e.target.nextElementSibling.nextElementSibling;
+
+        // 만약에 입력이 아무것도 안되어있으면 입력 x
+        if (value.trim().length == 0) {
+          span.textContent = "생년월일 YYYY-mm-DD";
+          span.classList.remove("check", "error");
+          e.target.value = "";
+          checkList["inputBirth"] = false;
+          return;
+        }
+
+        /* 생년월일 정규식 검사 */
+        // /^ 정규식 시작
+        // (19|20)\d{2}       
+        // $/ 정규식 종료
+        // /^(19|20)\d{6}$/     -> 1900-2000년대 이후 6자리 작성 199990505
+        // /^\d{8}$/            -> 생년월일 하이픈 빼고 8자리 입력
+        
+        const birthdateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+
+        if (birthdateRegex.test(value)) {
+          span.textContent = "유효한 생년월일입니다.";
+          span.classList.add("check");
+          span.classList.remove("error");
+          checkList["inputBirth"] = true;
+        } else {
+          span.textContent = "유효하지 않은 생년월일입니다. 하이픈(-)을 포함해서 입력해주세요";
+          span.classList.add("error");
+          span.classList.remove("check");
+          checkList["inputBirth"] = false;
+        }
+      });
+    </script>
+  </body>
+</html>
