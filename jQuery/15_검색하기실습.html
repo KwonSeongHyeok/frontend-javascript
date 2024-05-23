@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <style>
+            .컨테이너{
+                width: 500px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px #ccc;
+            }
+            #검색박스 {
+                width: 90%;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius:  5px;
+                margin-bottom: 20px;
+            }
+            ul{
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+            li{
+                padding: 15px;
+                border-bottom: 1px solid #ccc;
+                background-color: white;
+            }
+            body{
+                background-color: aliceblue;
+            }
+            
+            #검색결과{
+                display: none;
+            }
+        </style>
+        <meta charset="UTF-8" /> 
+        <title>옷 검색하기</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#검색박스").keyup(function(){
+                    const 검색박스 = $(this).val();
+                    var 검색결과확인 = false;
+
+                    $("li").each(function(){
+                        var 텍스트 = $(this).text();
+                        
+
+                        if(텍스트.indexOf(검색박스) === -1){
+                            $(this).hide();
+                        } else{
+                            $(this).show();
+                            검색결과확인 = true;
+                        }
+                    });
+
+                    // 만약에 검색한 결과가있으면 검색 결과가 없습니다를 숨기고
+                    if(검색결과확인){
+                        $("#검색결과").hide();
+                    } else{
+                        $("#검색결과").show();
+                    }
+                    // 검색한 결과가 없으면 보여줌
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>KH 옷가게</h1>
+        <div class="컨테이너">
+            <input type="text" id="검색박스" placeholder="찾는 옷 검색하기">
+            <ul id="옷리스트">
+                <li>청바지</li>
+                <li>셔츠</li>
+                <li>니트</li>
+                <li>슬랙스</li>
+                <li>하와이안슬랙스</li>
+                <li>반바지</li>
+                <li>7부반바지</li>
+                <li>긴팔니트</li>
+                <li>점프수트</li>
+                <li>원피스</li>
+            </ul>
+            <p id="검색결과">검색결과가 없습니다.</p>
+        </div>
+    </body>
+</html>
