@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" /> 
+        <title>기능함수실습</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.js"></script>
+        <style>
+            #문구모음{
+                border: 2px solid lightblue;
+                border-radius: 10px;
+                margin: 0 auto;
+                text-align: center;
+                width: 50%;
+                height: 50%;
+                background-color: beige;
+            }
+            button{
+                margin: 0 auto;
+                text-align: center;
+                display: block;
+                border: none;
+                border-radius: 10px;
+                background-color: lightcyan;
+                padding: 10px 20px;
+                margin-top: 10px;
+                box-shadow: 0 0 10px lightcoral;
+            }
+        </style>
+        <script>
+            function 문구숨기기(){
+                $("#문구모음").toggle("slow");
+            }
+        </script>
+    </head>
+    <body>
+        <div id="문구모음">
+            <h1>명언들</h1>
+            <p>노력에 집착하라. 숙명적인 노력을</p>
+            <p>할 수 있다고 믿는 사람은 결국 그렇게 된다.</p>
+            <p>당신이 포기할 때, 나는 시작한다.</p>
+        </div>
+        <button onclick="문구숨기기()">숨기기</button>
+    </body>
+</html>
