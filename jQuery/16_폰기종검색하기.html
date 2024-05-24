@@ -4,33 +4,54 @@
         <meta charset="UTF-8">
         <title>핸드폰 검색하기</title>
         <script src="jquery-3.4.1.min.js"></script>
+        <style>
+            .컨테이너{
+                width: 500px;
+                    margin: 20px auto;
+                    padding: 20px;
+                    background-color: white;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px #ccc;
+            }
+            #검색박스{
+                width: 80%;
+                margin: 0 auto;
+                display: block;
+            }
+            ul li{
+             list-style-type: none;
+             border-bottom: 1px solid #ccc;
+            }
+            #검색결과 {
+                display: none;
+            }
+        </style>
     <script>
         $(document).ready(function(){
             $("#검색박스").keyup(function(){
                 const 검색박스 = $(this).val();
+                var 검색결과확인;
 
-                $('li').each(function(){
+                $("#핸드폰리스트 li").each(function(){
                     var 텍스트 = $(this).text();
 
                     if(텍스트.indexOf(검색박스) === -1 ){
                         $(this).hide();
                     } else {
                         $(this).show();
+                        검색결과확인 = true;
                     }
                 });
+
+                if(검색결과확인) {
+                    $("#검색결과").hide();
+                } else{
+                    $("#검색결과").show();
+                }
             });
         });
     </script>
-    <style>
-        .컨테이너{
-            width: 500px;
-                margin: 20px auto;
-                padding: 20px;
-                background-color: white;
-                border-radius: 10px;
-                box-shadow: 0 0 10px #ccc;
-        }
-    </style>
+    
     </head>
     
     <body>
@@ -45,6 +66,7 @@
                 <li>Xiaomi Mi 11</li>
                 <li>LG Velvet</li>
             </ul>
+            <p id="검색결과">검색결과가 없습니다.</p>
         </div>
     </body>
 </html>
